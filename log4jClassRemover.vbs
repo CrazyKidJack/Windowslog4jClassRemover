@@ -6,6 +6,21 @@ JNDI_CLASS_FILENAME="JndiLookup.class"
 LOG4J_GLOB="log4j-core-*.jar"
 LOG4J_REGEX="log4j-core-2.([0-9]+\.){1,2}jar"
 
+'get command line args
+Set objArgs = WScript.Arguments
+ZIP_TIMEOUT_SECS=60
+if objArgs.Count = 1 then
+    ZIP_TIMEOUT_SECS=CInt(objArgs(0))
+elseif objArgs.Count > 1 then
+    wscript.echo "usage: CScript " & WScript.ScriptFullName & "[ZIP_TIMEOUT_SECS]"
+    wscript.echo "ZIP_TIMEOUT_SECS is optional"
+    wscript.echo ""
+    wscript.echo "Invalid Arguments... terminating..."
+    wscript.Quit
+end if
+wscript.echo ZIP_TIMEOUT_SECS
+'end get command line args
+
 '/////////////////////////////////////////////////////////////////////////////
 'PROCEDURES & FUNCTIONS
 '/////////////////////////////////////////////////////////////////////////////
@@ -103,20 +118,25 @@ Function unzipJar(FS, objShell, jarPath)
     set filesInZip = objShell.NameSpace(zipPath).items
     objShell.NameSpace(unzipPath).CopyHere(filesInZip)
 
-    FS.DeleteFile zipPath
-
     unzipJar = Array(unzipPath, zipPath)
 End Function 'unzipJar
 
 Function wait4Copy(zipPath, source)
     numSources = source.Count
     numDests   =  objShell.NameSpace(zipPath).Items.Count
-    maxIterations=60
 
     iter=0
     Do Until numDests = numSources
+        if (iter >= ZIP_TIMEOUT_SECS) then
+            wscript.echo "here2"
+            wscript.echo "zip timeout! Terminating..."
+            wscript.echo "This script is not cleaning itself up..."
+            wscript.Quit
+        end if
+
         iter = iter + 1
         wscript.Sleep(1000)
+
         numDests   =  objShell.NameSpace(zipPath).Items.Count
     Loop
 End Function
@@ -181,7 +201,9 @@ for each log4jFile in log4jFileLst
 
     removeClassFile workingDir, unzipPath, log4jFile
 
-    'zip jar
+    'waits to delete so that
+    'the jar continues to exist incase of error piror to this point
+    FS.DeleteFile zipPath 
     Call zipJar(FS, objShell, unzipPath, zipPath)
 
     'cleanUp
