@@ -1,6 +1,3 @@
-'https://dlcdn.apache.org/logging/log4j/2.15.0/apache-log4j-2.15.0-bin.zip
-'https://dlcdn.apache.org/logging/log4j/2.16.0/apache-log4j-2.16.0-bin.zip
-
 '/////////////////////////////////////////////////////////////////////////////
 'GLOBAL CONSTANTS
 '/////////////////////////////////////////////////////////////////////////////
@@ -136,6 +133,17 @@ Function zipJar(FS, objShell, unzipPath, zipPath)
     Call zip2Jar(FS, zipPath)
 End Function 'zipJar
 
+Sub removeClassFile(workingDir, unzipPath, log4jFile)
+    jndiClassFullPath = unzipPath & JNDI_CLASS_RELPATH
+    if FS.FileExists(jndiClassFullPath) then
+        jndiZipFldrPath = workingDir & "\" & JNDI_CLASS_FILENAME & "_" & log4jFile
+        createFldr FS, jndiZipFldrPath
+        wscript.echo "source: " & jndiClassFullPath
+        wscript.echo "dest  : " & jndiZipFldrPath & "\" & JNDI_CLASS_FILENAME
+        FS.MoveFile jndiClassFullPath, jndiZipFldrPath & "\" & JNDI_CLASS_FILENAME
+    end if
+End Sub 'removeClassFile
+
 '/////////////////////////////////////////////////////////////////////////////
 'MAIN
 '/////////////////////////////////////////////////////////////////////////////
@@ -170,16 +178,8 @@ for each log4jFile in log4jFileLst
     unzipRtn = unzipJar(FS, objShell, log4jPath)
     unzipPath = unzipRtn(0)
     zipPath   = unzipRtn(1)
-    
-    'remove class file
-    jndiClassFullPath = unzipPath & JNDI_CLASS_RELPATH
-    if FS.FileExists(jndiClassFullPath) then
-        jndiZipFldrPath = workingDir & "\" & JNDI_CLASS_FILENAME & "_" & log4jFile
-        createFldr FS, jndiZipFldrPath
-        wscript.echo "source: " & jndiClassFullPath
-        wscript.echo "dest  : " & jndiZipFldrPath & "\" & JNDI_CLASS_FILENAME
-        FS.MoveFile jndiClassFullPath, jndiZipFldrPath & "\" & JNDI_CLASS_FILENAME
-    end if
+
+    removeClassFile workingDir, unzipPath, log4jFile
 
     'zip jar
     Call zipJar(FS, objShell, unzipPath, zipPath)
@@ -187,9 +187,3 @@ for each log4jFile in log4jFileLst
     'cleanUp
     FS.DeleteFolder unzipPath
 next
-'unzip jars
-
-'change log4j file extension to .zip
-
-'InputFolder = FS.GetAbsolutePathName(objArgs(0))
-'ZipFile = FS.GetAbsolutePathName(objArgs(1))
