@@ -1,5 +1,10 @@
 # Windowslog4jClassRemover
 
+## !!!IMPORTANT!!!
+This script is TEMPORARY stop gap... it is NOT a remediation.
+The log4j problems are an area of active research and guidance on remediation updates nearly by the minute.
+Consult the interwebs for how you *should* fix this
+
 ## Description
 * Searches installation directory for log4j-core jars
 * unzips them
