@@ -9,7 +9,7 @@ Consult the interwebs for how you *should* fix this
 * Searches installation directory for log4j-core jars
 * unzips them
 * moves JndiLookup.class out of jar into it's own NEW folder within the installation directory
-* re-zips jar
+* re-zips jar (default timeout is 60 seconds... can add command line param to override)
 * Handles multiple log4j-core jars within the same installation folder so long as they all have different names
 
 ## Compatibility
