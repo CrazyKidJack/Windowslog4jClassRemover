@@ -5,7 +5,7 @@ This script is TEMPORARY stop gap... it is NOT a remediation.
 The log4j problems are an area of active research and guidance on remediation updates nearly by the minute.  
 
 Consult the interwebs for how you *should* fix this.  
-[Apache Log4j Security Vulnerabilities](https://logging.apache.org/log4j/2.x/security.html)  
+[apache.org - Apache Log4j Security Vulnerabilities](https://logging.apache.org/log4j/2.x/security.html)  
 [CISA.gov - Apache Log4j Vulnerability Guidance](https://www.cisa.gov/uscert/apache-log4j-vulnerability-guidance)  
 [GitHub cisagov/log4j-affected-db](https://github.com/cisagov/log4j-affected-db)  
 
