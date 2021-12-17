@@ -10,8 +10,9 @@ Consult the interwebs for how you *should* fix this.
 [GitHub cisagov/log4j-affected-db](https://github.com/cisagov/log4j-affected-db)  
 
 ## Description
+* You need to first locate any folders which contain the vulnerable JAR files. The script needs to be installed and run in each of those folders
 * This script takes the JndiLookup.class file out of log4j-core JAR files
-  * Searches installation directory for log4j-core jars
+  * Searches script installation directory for log4j-core jars
   * unzips them
   * moves JndiLookup.class out of jar into it's own NEW folder within the installation directory
   * re-zips jar (default timeout is 60 seconds... can add command line param to override)
