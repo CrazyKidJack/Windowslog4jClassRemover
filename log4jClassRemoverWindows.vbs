@@ -6,7 +6,7 @@ JNDI_CLASS_FILENAME="JndiLookup.class"
 LOG4J_GLOB="log4j-core-*.jar"
 LOG4J_REGEX="log4j-core-2.([0-9]+\.){1,2}jar"
 
-wscript.echo "version v1.1.0"
+wscript.echo "version v1.1.1"
 
 'get command line args
 Set objArgs = WScript.Arguments
@@ -15,7 +15,7 @@ if objArgs.Count = 1 then
     ZIP_TIMEOUT_SECS=CInt(objArgs(0))
 elseif objArgs.Count > 1 then
     wscript.echo "usage: CScript " & WScript.ScriptFullName & "[ZIP_TIMEOUT_SECS]"
-    wscript.echo "ZIP_TIMEOUT_SECS is optional"
+    wscript.echo "ZIP_TIMEOUT_SECS is optional. 60 seconds is the default"
     wscript.echo ""
     wscript.echo "Invalid Arguments... terminating..."
     wscript.Quit
