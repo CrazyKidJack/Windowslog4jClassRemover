@@ -6,7 +6,7 @@ JNDI_CLASS_FILENAME="JndiLookup.class"
 LOG4J_GLOB="log4j-core-*.jar"
 LOG4J_REGEX="log4j-core-2.([0-9]+\.){1,2}jar"
 
-wscript.echo "version v1.1.1"
+wscript.echo "version v1.1.2"
 
 'get command line args
 Set objArgs = WScript.Arguments
