@@ -203,8 +203,8 @@ for each log4jFile in log4jFileLst
 
     removeClassFile workingDir, unzipPath, log4jFile
 
-    'waits to delete so that
-    'the jar continues to exist incase of error piror to this point
+    'waits to delete until now so that
+    '  the jar continues to exist incase of error piror to this point
     FS.DeleteFile zipPath 
     Call zipJar(FS, objShell, unzipPath, zipPath)
 
