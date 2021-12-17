@@ -27,5 +27,5 @@ Consult the interwebs for how you *should* fix this.
 This script should be compatible on any system that can run VBScript files on the command line using the CScript command.  
 By default that should include all Windows machines running XP or newer
 
-## Installation, Run, & uninstallation
+## Installation, Run, Uninstallation, Usage Guide, & Troubleshooting
 See [release](https://github.com/CrazyKidJack/Windowslog4jClassRemover/releases/latest)
