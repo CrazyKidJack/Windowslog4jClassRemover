@@ -17,4 +17,4 @@ This script should be compatible on any system that can run VBScript files on th
 By default that should include all Windows machines running XP or newer
 
 ## Installation, Run, & uninstallation
-See release
+See [release](https://github.com/CrazyKidJack/Windowslog4jClassRemover/releases/latest)
