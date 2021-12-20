@@ -8,6 +8,7 @@ Consult the interwebs for how you *should* fix this.
 [apache.org - Apache Log4j Security Vulnerabilities](https://logging.apache.org/log4j/2.x/security.html)  
 [CISA.gov - Apache Log4j Vulnerability Guidance](https://www.cisa.gov/uscert/apache-log4j-vulnerability-guidance)  
 [GitHub cisagov/log4j-affected-db](https://github.com/cisagov/log4j-affected-db)  
+[Reddit thread: log4j_0day_being_exploited](https://www.reddit.com/r/blueteamsec/comments/rd38z9/log4j_0day_being_exploited/)
 
 ## Description
 * You need to first locate any folders which contain the vulnerable JAR files. The script needs to be installed and run in each of those folders
